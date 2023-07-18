@@ -180,8 +180,6 @@ if __name__ == '__main__':
 
         command, direction, speed = cur_inp_stream.read_inp()
 
-        #
-
         if command == 'a':
             actuator.ffw()
             print ("accel")
@@ -225,18 +223,14 @@ if __name__ == '__main__':
         else:
             if direction < 0:
                 angle = deg2rad(direction * 30)
-                #
                 print ("left")
             elif direction > 0:
                 angle = deg2rad(direction * 30)
-                #
                 print ("right")
             else:
-                #
                 actuator.center()
                 print ("center")
 
-        #
         if dur > period:
             print("%.3f: took %d ms - deadline miss."
                 % (ts - start_ts, int(dur * 1000)))
