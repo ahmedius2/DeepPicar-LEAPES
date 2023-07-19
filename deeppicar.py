@@ -70,7 +70,7 @@ def turn_off():
     cur_inp_stream.stop()
 
 def preprocess(img):
-    img = img[img.shape[0]//2:]
+    #img = img[img.shape[0]//2:]
     img = cv2.resize(img, (params.img_width, params.img_height))
     # Convert to grayscale and readd channel dimension
     if params.img_channels == 1:
