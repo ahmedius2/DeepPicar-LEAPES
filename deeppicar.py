@@ -70,7 +70,7 @@ def turn_off():
     cur_inp_stream.stop()
 
 def preprocess(img):
-    #img = img[img.shape[0]//2:]
+    img = img[img.shape[0]//6:]
     img = cv2.resize(img, (params.img_width, params.img_height))
     # Convert to grayscale and readd channel dimension
     if params.img_channels == 1:
@@ -106,23 +106,6 @@ def signal_handler(sig, frame):
 
 signal.signal(signal.SIGINT, signal_handler)
 
-##########################################################
-# EXERCISE 1
-# PLACE THE FOLLOWING CODE SNIPPETS IN THE RIGHT POSITION BELOW
-# Snippet 1:
-# dur = time.time() - ts
-# Snippet 2:
-# actuator.set_speed(speed)
-# Snippet 3:
-# actuator.left(direction)
-# Snippet 4:
-# actuator.right(direction)
-# Snippet 5:
-# angle=0.
-##########################################################
-# EXERCISE 2
-# remove the erroneous 'break' statement
-##########################################################
 
 ##########################################################
 # program begins
@@ -167,7 +150,6 @@ if __name__ == '__main__':
     angle_arr = []
     # enter main loop
     while not finish:
-        break
         if use_thread:
             time.sleep(next(g))
         frame = camera.read_frame()
@@ -179,6 +161,8 @@ if __name__ == '__main__':
             cur_inp_stream= input_stream.instantiate_inp_stream(cur_inp_type, speed)
 
         command, direction, speed = cur_inp_stream.read_inp()
+            
+        actuator.set_speed(speed)
 
         if command == 'a':
             actuator.ffw()
@@ -223,14 +207,18 @@ if __name__ == '__main__':
         else:
             if direction < 0:
                 angle = deg2rad(direction * 30)
+                actuator.left(direction)
                 print ("left")
             elif direction > 0:
                 angle = deg2rad(direction * 30)
+                actuator.right(direction)
                 print ("right")
             else:
+                angle=0.
                 actuator.center()
                 print ("center")
 
+        dur = time.time() - ts
         if dur > period:
             print("%.3f: took %d ms - deadline miss."
                 % (ts - start_ts, int(dur * 1000)))
