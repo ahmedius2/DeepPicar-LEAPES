@@ -79,7 +79,7 @@ Compress all the recorded files into a single zip file, say Dataset.zip for Cola
     
 Open the colab notebook. Following the notebook, you will upload the dataset to the colab, train the model, and download the model back to your PC. 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ahmedius2/DeepPicar-LEAPES/blob/main/RunAll.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ahmedius2/DeepPicar-LEAPES/blob/dev/RunAll.ipynb)
 
 After you are done trainig, you need to copy the trained tflite model file (`large-200x66x3.tflite` by default) to the Pi using the web uploader
 
